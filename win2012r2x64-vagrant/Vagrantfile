@@ -14,21 +14,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
- config.vm.box = "carmenpuccio/windows-server-2012-r2-test"
+  config.vm.box = "carmenpuccio/windows-server-2012-r2-test"
 
- config.vm.provider :virtualbox do |v, override|
-  override.vm.network :private_network, ip: "192.168.0.12"
-end
+  config.vm.provider :virtualbox do |v, override|
+    override.vm.network :private_network, ip: "192.168.0.12"
+  end
 
- config.vm.guest = :windows
- config.winrm.timeout = 1800
- config.winrm.username = "vagrant"
- config.winrm.password = "vagrant"
- config.winrm.host = "localhost"
- config.winrm.port = "5985"
- config.winrm.guest_port = "5985"
- config.winrm.max_tries = "20"
- config.windows.halt_timeout = 20
+  config.vm.guest = :windows
+  config.vm.boot_timeout = 600
+  config.winrm.timeout = 1800
+  config.winrm.username = "vagrant"
+  config.winrm.password = "vagrant"
+  config.winrm.host = "localhost"
+  config.winrm.port = (FFI::Platform::IS_WINDOWS ? "6985" : "5985")
+  config.winrm.guest_port = "5985"
+  config.winrm.max_tries = "20"
+  config.windows.halt_timeout = 20
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -38,7 +39,8 @@ end
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
+  config.vm.network :forwarded_port, guest: 3389, host: (FFI::Platform::IS_WINDOWS ? 4389 : 3389)
+  config.vm.network :forwarded_port, guest: 5985, host: (FFI::Platform::IS_WINDOWS ? 6985 : 5985), id: "winrm", auto_correct: true
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -68,13 +70,16 @@ config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_co
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-   config.vm.provider "virtualbox" do |vb|
-  #   # Don't boot with headless mode
-     vb.gui = true
+  config.vm.provider "virtualbox" do |vb|
+  #   
+    vb.name = "ap_win2012r2" # this becomes the name of the virtual box
+    vb.gui = true # do not run in headless mode
+    vb.customize ["modifyvm", :id, "--vrde", "on"] # enable remote desktop 
+    vb.customize ["modifyvm", :id, "--vrdeauthtype", "external"] # enable remote desktop  
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
   #   vb.customize ["modifyvm", :id, "--memory", "2048"]
-   end
+  end
   #
   # View the documentation for the provider you're using for more
   # information on available options.
@@ -146,4 +151,6 @@ config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_co
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+
+  config.vm.provision :shell, :path => "../shared/shell/installvs.cmd"
 end
