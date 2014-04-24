@@ -6,3 +6,4 @@ forge "http://forge.puppetlabs.com"
 #mod 'puppetlabs/registry'
 
 mod 'rismoney/chocolatey', :git => 'git://github.com/chocolatey/puppet-chocolatey.git'
+mod 'simondean/iis', :git => 'git://github.com/simondean/puppet-iis.git'
