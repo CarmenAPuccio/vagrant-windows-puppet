@@ -14,9 +14,6 @@ SET PATH=%PATH%;%SystemDrive%\Chocolatey\bin;
 @echo 'Ensuring GIT is Installed'
 @powershell -NoProfile -ExecutionPolicy Bypass "cinst git"
 
-::@echo 'Install VirtualBox Ext Pack'
-::@powershell -NoProfile -ExecutionPolicy Bypass "cinst VirtualBox.ExtensionPack"
-
 SET PATH=%PATH%;%SystemDrive%\Program Files (x86)\Git\bin
 @echo "Ensuring environment for puppet - this puts the puppet ruby on the path for librarian"
 @echo "You can confirm the environment by saying facter --puppet after the below is run"
@@ -29,7 +26,4 @@ SET FACTER_domain=local
 
 ::puppet resource
 ::call puppet agent --test --debug --verbose
-
-@echo 'Install Web Deploy 2.0'
-@powershell -NoProfile -ExecutionPolicy Bypass "cinst msdeploy"
 
