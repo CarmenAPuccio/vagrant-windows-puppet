@@ -8,7 +8,6 @@ package { 'msdeploy':
   provider => 'chocolatey',
 }
 
-package { 'VisualStudio2013Ultimate':
-  ensure => latest,
-  provider => 'chocolatey',
+node default {
+	include windows-iis
 }
