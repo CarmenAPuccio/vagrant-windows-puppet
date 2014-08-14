@@ -1,4 +1,3 @@
-
 $NetFx4ClientUrl = 'http://download.microsoft.com/download/5/6/2/562A10F9-C9F4-4313-A044-9C94E0A8FAC8/dotNetFx40_Client_x86_x64.exe'
 $NetFx4FullUrl = 'http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe'
 $NetFx4Path = 'c:\vagrantshared\resources\NetFx4'
@@ -24,14 +23,12 @@ function Enable-Net40 {
     $psi.WorkingDirectory = "$NetFx4Path"
     $psi.FileName = "$NetFx4InstallerFile"
     $psi.Arguments = "/q /norestart /repair /log `'$NetFx4Path\NetFx4Install.log`'"
-    #$psi.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Minimized;
 
     Write-Host "Installing `'$NetFx4Installer`'"
     $s = [System.Diagnostics.Process]::Start($psi);
     $s.WaitForExit();
-    # if ($s.ExitCode -ne 0) {
-    #   Write-Error ".NET Framework install failed with exit code `'$($s.ExitCode)`'."
-    # }
+  } else {
+    Write-Host "Nothing to do. .NET Framework 4.0 is already installed."
   }
 }
 
