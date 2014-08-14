@@ -24,7 +24,7 @@ try {
     & librarian-puppet update
 } catch {
     Write-Host "Installing librarian puppet"
-    & gem install librarian-puppet --no-ri --no-rdoc
+    & gem install librarian-puppet -v 1.0.0 #--no-ri --no-rdoc
     Write-Host "Running librarian-puppet install --clean"
 
     & librarian-puppet install --clean
