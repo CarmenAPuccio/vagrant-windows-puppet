@@ -9,7 +9,7 @@ echo 'Install puppet if missing'
 @powershell -NoProfile -ExecutionPolicy Bypass -File "c:\vagrantshared\shell\InstallPuppetFromMSI.ps1"
 
 SET PATH=%PATH%;%SystemDrive%\Program Files (x86)\Puppet Labs\Puppet\bin;%SystemDrive%\Program Files\Puppet Labs\Puppet\bin;
-SET PATH=%PATH%;%SystemDrive%\Chocolatey\bin;
+SET PATH=%PATH%;%SystemDrive%\ProgramData\chocolatey\bin;
 
 @echo 'Ensuring GIT is Installed'
 @powershell -NoProfile -ExecutionPolicy Bypass "cinst git"
