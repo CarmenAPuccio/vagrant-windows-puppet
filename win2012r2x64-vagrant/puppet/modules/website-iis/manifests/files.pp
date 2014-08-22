@@ -1,16 +1,20 @@
-class website-iis::files {
-	$username = '** insert DOMAIN\username **'
-	$password = '** insert password here **'
-	$share =  '** insert \\server\sharefolder **'
+class website-iis::files (
+	$destination = hiera("physicalpath"),
+	$shareusername = hiera("shareusername"),
+	$sharepassword = hiera("sharepassword"),
+	$share = hiera("share")
+	)
+
+{
 	$safeshare = regsubst($share, '[\\$]', '.', 'G')
 
 	$netuse = 'C:\Windows\system32\cmd.exe /c net use'
 
 	exec { 'install_mount':
-	   command => "$netuse $share /USER:$username $password"
+	   command => "$netuse $share /USER:$shareusername $sharepassword"
 	}
 
-	file { 'C:/inetpub/wwwroot/APRedit':
+	file { $destination:
 		recurse => true,
 		ensure => directory,
 		owner => 'Administrator',

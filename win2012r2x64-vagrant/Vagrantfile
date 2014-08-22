@@ -103,9 +103,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # # }
   #
   config.vm.provision :puppet, :options => ["--debug --trace --verbose"] do |puppet|
+    puppet.hiera_config_path = "puppet/hiera.yaml"
+    puppet.working_directory = "/vagrant"
     puppet.manifests_path = "puppet/manifests"
-    puppet.manifest_file  = "site.pp"
     puppet.module_path = "puppet/modules"
+    puppet.manifest_file  = "site.pp"
+
     puppet.facter = {
       "domain" => "local",
       "kernel" => "windows",
