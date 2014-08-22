@@ -1,0 +1,7 @@
+---
+siteid: 2
+physicalpath: 'C:\inetpub\wwwroot\ElectionsAPI'
+logfile_directory: '%SystemDrive%\inetpub\logs\LogFiles'
+shareusername: '** insert DOMAIN\username **'
+sharepassword: '** insert password here **'
+share: '** insert \\server\sharefolder **'
