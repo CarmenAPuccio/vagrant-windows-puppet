@@ -17,9 +17,7 @@ class website-iis::files (
 	file { $destination:
 		recurse => true,
 		ensure => directory,
-		owner => 'Administrator',
-		group => 'Users',
-		mode => '7777',
+		source_permissions => ignore,
 		notify => Service["W3SVC"],
 		source => "$share",
 		require => Exec['install_mount']
