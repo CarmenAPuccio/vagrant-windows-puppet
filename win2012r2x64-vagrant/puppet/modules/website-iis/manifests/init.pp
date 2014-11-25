@@ -9,5 +9,5 @@ class website-iis {
 		ensure => 'running',
 		enable => 'true',
 	}
-
+Class[website-iis::files]->Class[website-iis::apppool]
 }
