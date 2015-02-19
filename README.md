@@ -30,7 +30,6 @@ Vagrant Windows Boxes and Puppet
  1. Install/upgrade Vagrant to versions listed above.
  2. Install/upgrade VirtualBox/VMWare to versions listed above.
  3. Install/upgrade required plugins for vagrant (if using VMWare you will need the non-free vagrant-vmware-fusion or equivalent).
- 4. Install/upgrade vagrant-windows vagrant plugin. Open terminal/command line and type `vagrant plugin install vagrant-windows`
  5. Take a look at this gist that might be helpful in determining commands to call for setup: [Install Vagrant Windows Environment](https://gist.github.com/ferventcoder/6251225)
 
 ## Boxes Folder
