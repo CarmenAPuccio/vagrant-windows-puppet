@@ -9,5 +9,5 @@ package { 'msdeploy':
 }
 
 node default {
-	include windows-iis, website-iis
+	include windows-iis, website-iis, registry
 }
