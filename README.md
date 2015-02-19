@@ -5,9 +5,8 @@ Vagrant Windows Boxes and Puppet
 ### Note - This is my own fork of what ferventcoder has done. I wanted to build my own box and get an idea of what he was doing. 
 ### For more info please visit - https://github.com/ferventcoder/vagrant-windows-puppet
 
- * [Vagrant 1.5.3](https://www.vagrantup.com/downloads.html)
- * [VirtualBox 4.3.10](https://www.virtualbox.org/wiki/Downloads) 
- * Vagrant-Windows 1.6.0 - `vagrant plugin install vagrant-windows --plugin-version 1.6.0`.
+ * [Vagrant 1.7.2](https://www.vagrantup.com/downloads.html)
+ * [VirtualBox 4.3.22](https://www.virtualbox.org/wiki/Downloads) 
  * At least 20GB free on the host box.
 
  ## Building Windows Boxes for Vagrant 
