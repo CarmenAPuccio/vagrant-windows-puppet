@@ -1,4 +1,8 @@
 @echo 'Installing software...'
+@echo 'Installing CACert for Ruby/Puppet'
+@powershell -NoProfile -ExecutionPolicy Bypass -File "c:\vagrantshared\shell\DownloadCACertificate.ps1"
+SET SSL_CERT_FILE=%SystemDrive%\Certificates\cacert.pem
+
 @echo 'Ensuring .NET 4.0 is installed'
 @powershell -NoProfile -ExecutionPolicy Bypass -File "c:\vagrantshared\shell\InstallNet4.ps1"
 
@@ -8,7 +12,7 @@ echo 'Ensuring Chocolatey is Installed'
 echo 'Install puppet if missing'
 @powershell -NoProfile -ExecutionPolicy Bypass -File "c:\vagrantshared\shell\InstallPuppetFromMSI.ps1"
 
-SET PATH=%PATH%;%SystemDrive%\Program Files (x86)\Puppet Labs\Puppet\bin;%SystemDrive%\Program Files\Puppet Labs\Puppet\bin;
+SET PATH=%PATH%;%SystemDrive%\Program Files\Puppet Labs\Puppet\bin;%SystemDrive%\Program Files (x86)\Puppet Labs\Puppet\bin;
 SET PATH=%PATH%;%SystemDrive%\ProgramData\chocolatey\bin;
 
 @echo 'Ensuring GIT is Installed'
